@@ -14,7 +14,10 @@ int main()
 {
 	std::srand(std::time(nullptr));
 
-	// 2.
+	/*
+	* 2. Populate a container (e.g. vector or list) of objects of these types created
+	* in random manner with random parameters
+	*/
 	std::vector<std::shared_ptr<Curve::Curve3D>> curves(15);
 
 	for (auto& curve : curves)
@@ -51,7 +54,9 @@ int main()
 		}
 	}
 
-	// 3.
+	/*
+	* 3. Print coordinates of points and derivatives of all curves in the container at t=PI/4.
+	*/
 	for (const auto& curve : curves)
 	{
 		if (!curve)
@@ -66,7 +71,10 @@ int main()
 		std::cout << "derivative: " << derivative.x << " " << derivative.y << " " << derivative.z << std::endl;
 	}
 
-	// 4.
+	/*
+	* 4. Populate a second container that would contain only circles from the first container.
+	* Make sure the second container shares (i.e. not clones) circles of the first one, e.g. via pointers.
+	*/
 	std::vector<std::shared_ptr<Curve::Circle>> circle_container;
 
 	for (const auto& var : curves)
