@@ -90,9 +90,9 @@ int main()
 	* Sort the second container in the ascending order of circles’ radii.	* That is, the first element has the smallest radius, the last - the greatest.
 	*/
 	std::sort(circle_container.begin(), circle_container.end(),
-		[](const Curve::Circle& a, const Curve::Circle& b)
+		[](const std::shared_ptr<Curve::Circle> a, const std::shared_ptr<Curve::Circle> b)
 		{
-			return a.GetRadius() < b.GetRadius();
+			return a->GetRadius() < b->GetRadius();
 		});
 
 
