@@ -5,8 +5,12 @@
 
 namespace Curve
 {
-	class Helix : public Circle
+	class Helix final : public Circle
 	{
+
+	private:
+
+		float h; // step
 
 	public:
 
