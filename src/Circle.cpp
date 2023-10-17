@@ -16,7 +16,10 @@ namespace Curve
 
 	Vec3 Circle::GetPoint3D(const float t) const
 	{
-		return Vec3(0.f, 0.f, 0.f);
+		const float xt = std::cosf(t);
+		const float yt = std::sinf(t);
+
+		return Vec3(xt, yt, 0.f);
 	}
 
 
