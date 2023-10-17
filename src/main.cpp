@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
+#include <omp.h>
 #include "Circle.h"
 #include "Helix.h"
 #include "Ellipse.h"
@@ -13,15 +14,15 @@
 
 int main()
 {
-	std::srand(std::time(nullptr));
+	std::srand(0);
 
 	/*
 	* 2. Populate a container (e.g. vector or list) of objects of these types created
 	* in random manner with random parameters
 	*/
-	std::vector<std::shared_ptr<Curve::Curve3D>> curves(15);
+	std::vector<std::shared_ptr<Curve::Curve3D>> curve_container(15);
 
-	for (auto& curve : curves)
+	for (auto& curve : curve_container)
 	{
 		const int curve_type = std::abs(std::rand()) % 3;
 
@@ -58,15 +59,17 @@ int main()
 	/*
 	* 3. Print coordinates of points and derivatives of all curves in the container at t=PI/4.
 	*/
-	for (const auto& curve : curves)
+	const float pi4 = static_cast<float>(M_PI_4);
+
+	for (const auto& curve : curve_container)
 	{
 		if (!curve)
 		{
 			continue;
 		}
 
-		const Vec3 point      = curve->GetPoint3D(M_PI_4);
-		const Vec3 derivative = curve->GetFirstDerivative(M_PI_4);
+		const Vec3 point      = curve->GetPoint3D(pi4);
+		const Vec3 derivative = curve->GetFirstDerivative(pi4);
 
 		std::cout << "point: " << point.x << " " << point.y << " " << point.z << std::endl;
 		std::cout << "derivative: " << derivative.x << " " << derivative.y << " " << derivative.z << std::endl;
@@ -78,23 +81,33 @@ int main()
 	*/
 	std::vector<std::shared_ptr<Curve::Circle>> circle_container;
 
-	for (const auto& var : curves)
+	for (const auto& curve : curve_container)
 	{
-		if (auto circle = std::dynamic_pointer_cast<Curve::Circle>(var))
+		if (auto circle = std::dynamic_pointer_cast<Curve::Circle>(curve))
 		{
 			circle_container.push_back(circle);
 		}
 	}
 
 	/*
-	* Sort the second container in the ascending order of circles’ radii.	* That is, the first element has the smallest radius, the last - the greatest.
+	* 5. Sort the second container in the ascending order of circles’ radii.	* That is, the first element has the smallest radius, the last - the greatest.
 	*/
 	std::sort(circle_container.begin(), circle_container.end(),
-		[](const std::shared_ptr<Curve::Circle> a, const std::shared_ptr<Curve::Circle> b)
+		[](const std::shared_ptr<Curve::Circle>& a, const std::shared_ptr<Curve::Circle>& b)
 		{
 			return a->GetRadius() < b->GetRadius();
 		});
 
+	/*
+	* 6 and 8. Compute the total sum of radii of all curves in the second container
+	*/
+	float sum_of_radii = 0.f;
+
+	#pragma omp parallel for shared(circle_container) reduction(+:sum_of_radii)
+	for (long long i = 0; i < circle_container.size(); i++)
+	{
+		sum_of_radii += circle_container[i]->GetRadius();
+	}
 
 	return 0;
 }

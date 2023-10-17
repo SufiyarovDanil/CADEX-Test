@@ -13,4 +13,12 @@ set(SRCS     "${SRC_PATH}/main.cpp"
              "${SRC_PATH}/Ellipse.cpp"
              "${SRC_PATH}/Helix.cpp")
 
+find_package(OpenMP REQUIRED)
+
+if(OPENMP_FOUND)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+endif()
+
 add_executable(${CMAKE_PROJECT_NAME} ${SRCS})
+
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE OpenMP::OpenMP_CXX)
