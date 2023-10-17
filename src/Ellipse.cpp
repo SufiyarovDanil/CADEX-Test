@@ -17,7 +17,10 @@ namespace Curve
 
 	Vec3 Ellipse::GetPoint3D(const float t) const
 	{
-		return Vec3(0.f, 0.f, 0.f);
+		const float xt = x_radius_axis * std::cosf(t);
+		const float yt = y_radius_axis * std::sinf(t);
+
+		return Vec3(xt, yt, 0.f);
 	}
 
 
