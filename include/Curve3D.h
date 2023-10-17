@@ -14,7 +14,7 @@ namespace Curve
 
 		virtual Vec3 GetFirstDerivative(const float t) const = 0;
 
-		virtual ~Curve3D() = 0;
+		virtual ~Curve3D() = default;
 
 	};
 }
