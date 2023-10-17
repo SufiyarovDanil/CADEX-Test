@@ -1,5 +1,6 @@
 ﻿#define _USE_MATH_DEFINES
 #include <cmath>
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include "Circle.h"
@@ -85,7 +86,15 @@ int main()
 		}
 	}
 
-	std::cout << circle_container.size() << std::endl;
+	/*
+	* Sort the second container in the ascending order of circles’ radii.	* That is, the first element has the smallest radius, the last - the greatest.
+	*/
+	std::sort(circle_container.begin(), circle_container.end(),
+		[](const Curve::Circle& a, const Curve::Circle& b)
+		{
+			return a.GetRadius() < b.GetRadius();
+		});
+
 
 	return 0;
 }
