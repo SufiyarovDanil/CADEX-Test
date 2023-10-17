@@ -26,6 +26,9 @@ namespace Curve
 
 	Vec3 Circle::GetFirstDerivative(const float t) const
 	{
-		return Vec3(0.f, 0.f, 0.f);
+		const float dx_dt = radius * -std::sinf(t); // cos(x)' = -sin(x)
+		const float dy_dt = radius * std::cosf(t);  // sin(x)' = cos(x)
+
+		return Vec3(dx_dt, dy_dt, 0.f);
 	}
 }
