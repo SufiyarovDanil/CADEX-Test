@@ -1,16 +1,12 @@
 #pragma once
 
-#include "Curve3D.h"
+#include "Circle.h"
 
 
 namespace Curve
 {
-	class Helix : public Curve3D
+	class Helix : public Circle
 	{
-
-	private:
-
-		// ...
 
 	public:
 
