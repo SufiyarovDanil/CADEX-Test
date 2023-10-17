@@ -109,5 +109,7 @@ int main()
 		sum_of_radii += circle_container[i]->GetRadius();
 	}
 
+	std::cout << "sum of radii: " << sum_of_radii << std::endl;
+
 	return 0;
 }

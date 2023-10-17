@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-constexpr float PI2 = M_PI * 2.f;
+constexpr float PI2 = static_cast<float>(M_PI) * 2.f;
 
 
 namespace Curve
