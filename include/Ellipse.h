@@ -10,9 +10,9 @@ namespace Curve
 
 	private:
 
-		float minor_axis;
+		float x_radius_axis;
 
-		float major_axis;
+		float y_radius_axis;
 
 	public:
 
