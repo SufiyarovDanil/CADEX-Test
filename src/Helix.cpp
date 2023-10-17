@@ -33,6 +33,10 @@ namespace Curve
 
 	Vec3 Helix::GetFirstDerivative(const float t) const
 	{
-		return Vec3(0.f, 0.f, 0.f);
+		Vec3 result = Circle::GetFirstDerivative(t);
+
+		result.z = t / PI2; // (t * h / PI2)' = t / PI2
+
+		return result;
 	}
 }
