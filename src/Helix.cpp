@@ -35,7 +35,7 @@ namespace Curve
 	{
 		Vec3 result = Circle::GetFirstDerivative(t);
 
-		result.z = t / PI2; // (t * h / PI2)' = t / PI2
+		result.z = h / PI2; // (t * h / PI2)' = h / PI2
 
 		return result;
 	}
