@@ -27,6 +27,9 @@ namespace Curve
 
 	Vec3 Ellipse::GetFirstDerivative(const float t) const
 	{
-		return Vec3(0.f, 0.f, 0.f);
+		const float dx_dt = x_radius_axis * -std::sinf(t); // cos(x)' = -sin(x)
+		const float dy_dt = y_radius_axis * std::cosf(t);  // sin(x)' = cos(x)
+
+		return Vec3(dx_dt, dy_dt, 0.f);
 	}
 }
