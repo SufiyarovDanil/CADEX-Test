@@ -9,9 +9,6 @@
 #include "Ellipse.h"
 
 
-#define RAND_INT()
-
-
 int main()
 {
 	std::srand(0);
@@ -90,7 +87,8 @@ int main()
 	}
 
 	/*
-	* 5. Sort the second container in the ascending order of circles’ radii.	* That is, the first element has the smallest radius, the last - the greatest.
+	* 5. Sort the second container in the ascending order of circles’ radii.
+	* That is, the first element has the smallest radius, the last - the greatest.
 	*/
 	std::sort(circle_container.begin(), circle_container.end(),
 		[](const std::shared_ptr<Curve::Circle>& a, const std::shared_ptr<Curve::Circle>& b)
