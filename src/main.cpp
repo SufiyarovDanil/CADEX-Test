@@ -17,7 +17,7 @@ int main()
 	* 2. Populate a container (e.g. vector or list) of objects of these types created
 	* in random manner with random parameters
 	*/
-	std::vector<std::shared_ptr<Curve::Curve3D>> curve_container(15);
+	std::vector<std::shared_ptr<Curve::Curve3D>> curve_container(50);
 
 	for (auto& curve : curve_container)
 	{

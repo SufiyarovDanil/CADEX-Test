@@ -5,7 +5,7 @@
 
 namespace Curve
 {
-	class Circle : public Curve3D
+	class Circle final : public Curve3D
 	{
 		
 	private:
